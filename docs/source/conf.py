@@ -150,9 +150,6 @@ extensions = [
     "traits.util.trait_documenter",
 ]
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
-
 # The suffix of source filenames.
 source_suffix = ".rst"
 
@@ -218,6 +215,9 @@ try:
 
     html_theme_path = [enthought_sphinx_theme.theme_path]
     html_theme = "enthought"
+    html_static_path = []
+    templates_path = []
+
 except ImportError as exc:
     import warnings
 
@@ -228,6 +228,9 @@ except ImportError as exc:
     warnings.warn(RuntimeWarning(msg.format(exc)))
 
     # Use old defaults if enthought-sphinx-theme not available
+
+    # Add any paths that contain templates here, relative to this directory.
+    templates_path = ["_templates"]
 
     # The name of an image file (within the static path) to place at the top
     # of the sidebar.
@@ -243,6 +246,12 @@ except ImportError as exc:
     # given in html_static_path.
     html_style = "default.css"
 
+    # Add any paths that contain custom static files (such as style sheets)
+    # here, relative to this directory. They are copied after the builtin
+    # static files, so a file named "default.css" will overwrite the builtin
+    # "default.css".
+    html_static_path = ["_static"]
+
 # When using docset browsers like Dash and Zeal the side bar is redundant.
 if BUILD_DOCSET:
     html_theme_options = {"nosidebar": "true"}
@@ -253,11 +262,6 @@ html_title = "Traits 5 User Manual"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 # html_short_title = None
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
